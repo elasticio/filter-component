@@ -1,4 +1,5 @@
 /*eslint func-names: 0*/
+'use strict';
 module.exports = function configure(grunt) {
 
     grunt.initConfig({

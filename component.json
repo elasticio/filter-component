@@ -1,13 +1,11 @@
 {
   "title": "Filter",
   "description": "elastic.io filter component to filter incoming data based on arbitrary expression",
-  "credentials": {
-    "fields": {
-      "name": {
-        "label": "My API Key",
-        "required": true,
-        "viewClass": "TextFieldView"
-      }
+  "actions": {
+    "filter": {
+      "title": "Filter",
+      "main": "./lib/actions/filter.js",
+      "metadata": {}
     }
   }
 }
