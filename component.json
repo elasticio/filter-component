@@ -1,20 +1,27 @@
 {
-  "title": "Filter",
-  "description": "elastic.io filter component to filter incoming data based on arbitrary expression",
-  "actions": {
-    "filter": {
-      "title": "Filter",
-      "main": "./lib/actions/filter.js",
-      "fields": {
-        "condition": {
-          "label": "Filter condition",
-          "viewClass": "TextFieldWithNoteView",
-          "required": true,
-          "placeholder": "body.value > 100",
-          "note": "You can type any JavaScript expression here, if it is evaluated to <i>false</i> message will be rejected"
+    "title": "Filter",
+    "description": "elastic.io filter component to filter incoming data based on arbitrary expression",
+    "actions": {
+        "filter": {
+            "title": "Filter",
+            "main": "./lib/actions/filter.js",
+            "fields": {
+                "condition": {
+                    "label": "Filter condition",
+                    "viewClass": "TextFieldWithNoteView",
+                    "required": true,
+                    "placeholder": "body.value > 100",
+                    "note": "You can type any JavaScript expression here, if it is evaluated to <i>false</i> message will be rejected"
+                },
+                "reject": {
+                    "label": "Reject to",
+                    "viewClass": "SelectView",
+                    "prompt": "Select integration flow",
+                    "required": false,
+                    "model": "getFlows"
+                }
+            },
+            "metadata": {}
         }
-      },
-      "metadata": {}
     }
-  }
 }
