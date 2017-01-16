@@ -8,8 +8,8 @@ describe('Test filter', () => {
             foo: 20,
             bar: 'foo',
             float: 20.4,
-            flString: "20.4",
-            iso8601: "1995-12-25"
+            flString: '20.4',
+            iso8601: '1995-12-25'
         }
     };
 
