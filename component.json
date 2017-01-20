@@ -10,11 +10,11 @@
                     "label": "Filter condition",
                     "viewClass": "TextFieldWithNoteView",
                     "required": true,
-                    "placeholder": "body.value > 100",
+                    "placeholder": "value > 100",
                     "note": "You can type any JavaScript expression here, if it is evaluated to <i>false</i> message will be rejected"
                 },
                 "reject": {
-                    "label": "Reject to",
+                    "label": "(Optional) Send rejected messages to",
                     "viewClass": "SelectView",
                     "prompt": "Select integration flow",
                     "required": false,
