@@ -53,9 +53,12 @@ In the component repository you need to specify OAuth Client credentials as envi
  * ```XXX_KEY``` - your OAuth client key
  * ```XXX_SECRET``` - your OAUth client secret
  
-## Known issues
+## Known limitations
 
-No known issues are there yet.
+* Reject task should be:
+ * Created by the same user
+ * Start with elastic.io standard WebHook
+* Be carefull when changing the type of the rejected task flow (ordinary/long-running) and make sure you restart the task with the filter
 
 
 ## License
