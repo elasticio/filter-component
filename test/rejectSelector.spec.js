@@ -9,6 +9,7 @@ describe('Given the getFlows metamodel selection', function () {
         process.env.ELASTICIO_API_URI = 'http://foo.com';
         process.env.ELASTICIO_API_USERNAME = 'test-user';
         process.env.ELASTICIO_API_KEY = 'test-key';
+        process.env.ELASTICIO_USER_ID = '55b62973e3831b0800000001';
     });
     describe('and API responded OK', function () {
         let scope;
@@ -20,10 +21,7 @@ describe('Given the getFlows metamodel selection', function () {
             return action({}).then((result) => {
                 assert.isOk(scope.isDone());
                 assert.deepEqual({
-                    "57ee808cbacaa61500f92389": "Webhook to Code",
-                    "5825c4c1b8a859001871bedd": "New Mailchimp subscriber",
-                    "586638ee942fa9001dd25eea": "Webhook to Node.js Code",
-                    "5881322007a3bc00182f2ac7": "Give me a name"
+                    "57ee808cbacaa61500f92389": "Webhook to Code"
                 }, result);
             });
         });
