@@ -29,7 +29,7 @@ describe('Given the getFlows init', function () {
                 reject: '57ee808cbacaa61500f92389'
             }).then((result) => {
                 assert.isOk(scope.isDone());
-                assert.equal("55b62973e3831b0800000001.57ee808cbacaa61500f92389/ordinary.step_1.message", result);
+                assert.equal("55b62973e3831b0800000001.57ee808cbacaa61500f92389/ordinary.step_1.requeue", result);
             });
         });
     });
