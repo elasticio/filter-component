@@ -1,5 +1,6 @@
-/* eslint-env node, jasmine */
+/* eslint-env node, mocha */
 'use strict';
+const assert = require('chai').assert;
 const action = require('../lib/actions/filter').process;
 
 describe('Test filter', () => {
@@ -14,15 +15,16 @@ describe('Test filter', () => {
     };
 
     function filter(condition, passOrFail) {
-        return it(condition, (done) => {
+        it(condition, (done) => {
             let dataWasCalled = false;
+
             function onEmit(type, value) {
                 if (type && type === 'data') {
-                    expect(value).toBeDefined();
+                    assert.isDefined(value);
                     dataWasCalled = true;
                 } else if (type && type === 'end') {
-                    expect(value).toBeUndefined();
-                    expect(dataWasCalled).toEqual(passOrFail);
+                    assert.isUndefined(value);
+                    assert.equal(dataWasCalled, passOrFail);
                     done();
                 }
             }

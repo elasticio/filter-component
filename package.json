@@ -32,11 +32,15 @@
     "test": "NODE_ENV=test grunt"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "eslint": "^3.1.1",
     "eslint-config-xo-space": "^0.15.0",
     "eslint-plugin-json": "^1.2.0",
     "grunt": "^1.0.1",
-    "grunt-jasmine-node": "^0.3.1"
+    "grunt-mocha": "^1.0.2",
+    "grunt-mocha-test": "^0.13.2",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7"
   },
   "eslintConfig": {
     "extends": "xo-space",
