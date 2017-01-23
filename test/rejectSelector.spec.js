@@ -21,7 +21,9 @@ describe('Given the getFlows metamodel selection', function () {
             return action({}).then((result) => {
                 assert.isOk(scope.isDone());
                 assert.deepEqual({
-                    "57ee808cbacaa61500f92389": "Webhook to Code"
+                    "57ee808cbacaa61500f92389": "Webhook to Code",
+                    "5825c4c1b8a859001871bedd": "New Mailchimp subscriber",
+                    "586638ee942fa9001dd25eea": "Webhook to Node.js Code"
                 }, result);
             });
         });
