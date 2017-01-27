@@ -36,7 +36,7 @@ $ git push elasticio master
 ## Configure environment variables
 
 Current version of the component requires a Webhook URL basis for your environment
- * ```HOOKS_URL``` - basis url for your webhooks, like ``https://in.elastic.io/hooks/`` (note the slash at the end)
+ * ```HOOKS_URL``` - basis url for your webhooks, like ``https://in.elastic.io/hook/`` (note the slash at the end)
  
 ## Known limitations
 
