@@ -41,18 +41,17 @@ describe('Test filter', () => {
     describe(' should pass ', () => {
         filter('true', true);
         filter('!false', true);
-        filter('foo > 5', true);
-        filter('parseFloat(flString) > 2', true);
-        filter('flString > 20', true);
-        filter('moment(iso8601).day() == 1', true);
+        filter('body.foo > 5', true);
+        filter('parseFloat(body.flString) > 2', true);
+        filter('body.flString > 20', true);
+        filter('moment(body.iso8601).day() == 1', true);
     });
 
     describe(' should fail ', () => {
         filter('false', false);
         filter('!true', false);
-        filter('foo > 20', false);
-        filter('float > 20.4', false);
-        filter('float > 20.4', false);
+        filter('body.foo > 20', false);
+        filter('body.float > 20.4', false);
     });
 
 });

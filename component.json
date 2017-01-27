@@ -10,8 +10,8 @@
                     "label": "Filter condition",
                     "viewClass": "TextFieldWithNoteView",
                     "required": true,
-                    "placeholder": "value > 100",
-                    "note": "You can type any JavaScript expression here, if it is evaluated to <i>false</i> message will be rejected"
+                    "placeholder": "body.value > 100",
+                    "note": "You can type any JavaScript expression here, if it is evaluated to <i>false</i> message will be rejected. You can expect <i>body</i>,<i>attachments<i> and <i>headers</i> to be there"
                 },
                 "reject": {
                     "label": "(Optional) Send rejected messages to",
