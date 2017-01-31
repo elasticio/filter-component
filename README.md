@@ -6,6 +6,7 @@ Filter component for the [elastic.io platform](http://www.elastic.io &#34;elasti
 
 If you plan to **deploy it into [elastic.io platform](http://www.elastic.io &#34;elastic.io platform&#34;) you must follow sets of instructions to succseed**. 
 
+![image](https://cloud.githubusercontent.com/assets/56208/22467841/7b19fa48-e7c6-11e6-934d-7ad224d5cd54.png)
 
 ## How it works
 
