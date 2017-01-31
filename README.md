@@ -6,15 +6,30 @@ Filter component for the [elastic.io platform](http://www.elastic.io &#34;elasti
 
 If you plan to **deploy it into [elastic.io platform](http://www.elastic.io &#34;elastic.io platform&#34;) you must follow sets of instructions to succseed**. 
 
-## Before you Begin
 
-Before you can deploy any code into elastic.io **you must be a registered elastic.io platform user**. Please see our home page at [http://www.elastic.io](http://www.elastic.io) to learn how. 
+## How it works
 
-We&#39;ll use git and SSH public key authentication to upload your component code, therefore you must **[upload your SSH Key](http://docs.elastic.io/docs/ssh-key)**. 
+Filter will pass though incoming message if it match the condition specified in configruation. Expression is actually any JavaScript expression, so you can be creative. For example following expressions are possible:
+ * ``true``
+ * ``false``
+ * ``!false``
+ * ``body.foo > 5``
+ * ``parseFloat(body.flString) > 2``
+ * ``body.flString > 20``
+ * ``moment(body.iso8601).day() == 1``
 
-&gt; If you fail to upload you SSH Key you will get **permission denied** error during the deployment.
+Rejected messages could be **optionally** sent to the other integration flow, but please note that only integration flows
+that start with **Webhook** and may potentially accept the incoming data could be selected as reject flow.
 
-## Getting Started
+https://github.com/elasticio/filter-component/blob/master/test/filter.spec.js#L42
+
+## Known limitations
+
+* Reject task should be:
+ * Start with elastic.io standard WebHook
+* Only body of the rejected message got propagated to reject flow, not the attachments or headers
+
+## Deploying your fork of this component
 
 After registration and uploading of your SSH Key you can proceed to deploy it into our system. At this stage we suggest you to:
 * [Create a team](http://docs.elastic.io/docs/teams) to work on your new component. This is not required but will be automatically created using random naming by our system so we suggest you name your team accordingly.
@@ -37,13 +52,6 @@ $ git push elasticio master
 
 Current version of the component requires a Webhook URL basis for your environment
  * ```HOOKS_URL``` - basis url for your webhooks, like ``https://in.elastic.io/hook/`` (note the slash at the end)
- 
-## Known limitations
-
-* Reject task should be:
- * Start with elastic.io standard WebHook
-* Only body of the rejected message got propagated to reject flow, not the attachments or headers
-
 
 ## License
 
