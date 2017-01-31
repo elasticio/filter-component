@@ -14,6 +14,7 @@ Filter will pass though incoming message if it match the condition specified in 
  * ``true``
  * ``false``
  * ``!false``
+ * ``body.foo`` - will be true if ``body.foo`` is defined and not ``false``
  * ``body.foo > 5``
  * ``parseFloat(body.flString) > 2``
  * ``body.flString > 20``
