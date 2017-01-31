@@ -1,4 +1,5 @@
-# filter-component [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# filter-component [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
+
 > elastic.io filter component to filter incoming data based on arbitrary expression
 
 # filter-component
