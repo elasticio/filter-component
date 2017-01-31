@@ -20,6 +20,7 @@ Filter will pass though incoming message if it match the condition specified in 
  * ``parseFloat(body.flString) > 2``
  * ``body.flString > 20``
  * ``moment(body.iso8601).day() == 1``
+ * ``moment(body.start_at).isAfter(moment("1995-12-24"))``
  * more examples [here](https://github.com/elasticio/filter-component/blob/master/test/filter.spec.js#L42)
 
 The expression that you use in fitler will be evaluated in the 
