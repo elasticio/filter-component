@@ -11,7 +11,7 @@
                     "nodes": [
                         {
                             "id": "step_1",
-                            "command": "elasticio/webhook:receive",
+                            "command": "elasticio/webhook:receive@latest",
                             "fields": {
                                 "payload": "foo"
                             }
