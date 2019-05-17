@@ -21,8 +21,8 @@
   "dependencies": {
     "bluebird": "^3.4.6",
     "co": "^4.6.0",
-    "elasticio-node": "0.0.8",
-    "elasticio-sailor-nodejs": "2.2.3",
+    "elasticio-node": "0.0.9",
+    "elasticio-sailor-nodejs": "^2.3.0",
     "moment": "^2.17.1",
     "request": "^2.75.0",
     "request-promise": "^4.1.1"
@@ -39,7 +39,7 @@
     "grunt": "^1.0.1",
     "grunt-mocha": "^1.0.2",
     "grunt-mocha-test": "^0.13.2",
-    "mocha": "^3.2.0",
+    "mocha": "^6.1.4",
     "nock": "^9.0.2",
     "sinon": "^1.17.7"
   },
