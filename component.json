@@ -3,6 +3,7 @@
     "description": "elastic.io filter component to filter incoming data based on arbitrary expression",
     "actions": {
         "filter": {
+            "deprecated": true,
             "title": "Filter",
             "main": "./lib/actions/filter.js",
             "fields": {
@@ -22,6 +23,14 @@
                 }
             },
             "metadata": {}
+        },
+        "SimpleJSONataFilter": {
+            "title": "Simple JSONata Filter",
+            "main": "./lib/actions/simpleJSONataFilter.js",
+            "fields": {},
+            "metadata": {
+                "in": "./lib/schemas/simpleJSONataFilter.in.json"
+            }
         }
     }
 }
