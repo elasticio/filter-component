@@ -4,7 +4,7 @@
     "actions": {
         "filter": {
             "deprecated": true,
-            "title": "Filter (Deprecated)",
+            "title": "Filter",
             "main": "./lib/actions/filter.js",
             "fields": {
                 "condition": {
@@ -27,15 +27,9 @@
         "SimpleJSONataFilter": {
             "title": "Simple JSONata Filter",
             "main": "./lib/actions/simpleJSONataFilter.js",
-            "fields": {
-                "expression": {
-                    "label": "Simple JSONata Filter",
-                    "required": true,
-                    "viewClass": "JSONataView"
-                }
-            },
+            "fields": {},
             "metadata": {
-                "out": {}
+                "in": "./lib/schemas/simpleJSONataFilter.in.json"
             }
         }
     }
