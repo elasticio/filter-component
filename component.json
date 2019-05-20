@@ -33,9 +33,6 @@
                     "required": true,
                     "viewClass": "JSONataView"
                 }
-            },
-            "metadata": {
-                "out": {}
             }
         }
     }
