@@ -4,7 +4,7 @@
     "actions": {
         "filter": {
             "deprecated": true,
-            "title": "Filter",
+            "title": "Filter (Deprecated)",
             "main": "./lib/actions/filter.js",
             "fields": {
                 "condition": {
