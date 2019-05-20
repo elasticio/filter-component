@@ -27,9 +27,15 @@
         "SimpleJSONataFilter": {
             "title": "Simple JSONata Filter",
             "main": "./lib/actions/simpleJSONataFilter.js",
-            "fields": {},
+            "fields": {
+                "expression": {
+                    "label": "JSONata Expression",
+                    "required": true,
+                    "viewClass": "JSONataView"
+                }
+            },
             "metadata": {
-                "in": "./lib/schemas/simpleJSONataFilter.in.json"
+                "out": {}
             }
         }
     }
