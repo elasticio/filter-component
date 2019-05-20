@@ -29,8 +29,8 @@
         "request-promise": "4.2.4"
     },
     "scripts": {
-        "pretest": "node_modules/.bin/eslint lib spec Gruntfile.js --ext .json --ext .js --fix",
-        "test": "NODE_ENV=test grunt"
+        "pretest": "eslint lib/simpleJSONataFilter.js spec/simpleJSONataFilter.spec.js -fix",
+        "test": "mocha spec/simpleJSONataFilter.spec.js"
     },
     "devDependencies": {
         "chai": "3.5.0",
