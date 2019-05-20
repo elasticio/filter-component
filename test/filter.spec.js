@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 'use strict';
 const assert = require('chai').assert;
-const action = require('../lib/actions/filter').process;
+const action = require('../lib/actions/simpleJSONataFilter').process;
 
 describe('Test filter', () => {
     const msg = {
