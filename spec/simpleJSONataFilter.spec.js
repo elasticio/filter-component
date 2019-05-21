@@ -9,15 +9,13 @@ describe('Test filter', () => {
         //let actionObject = action(msg, cfg);
         it('Running tests', (done) => {
             let eventEmitted = false;
-
-            if (action.on('data', () => {
+            action.addEventListener('data', () => {
                 eventEmitted = true;
-            })) {
-                assert.equal(eventEmitted, passOrFail);
-            } else {
-                assert.equal(eventEmitted, passOrFail);
-            }
+            });
+            assert.equal(eventEmitted, passOrFail);
         });
+
+        action(msg, cfg);
     }
 
     // function filter(condition, passOrFail) {
