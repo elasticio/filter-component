@@ -1,6 +1,7 @@
 'use strict';
 const assert = require('chai').assert;
 const action = require('../lib/actions/simpleJSONataFilter').process;
+const emitter = require('../lib/actions/simpleJSONataFilter').emitter;
 
 describe('Test filter', () => {
     function filter(condition, passOrFail) {
@@ -9,10 +10,11 @@ describe('Test filter', () => {
         //let actionObject = action(msg, cfg);
         it('Running tests', (done) => {
             let eventEmitted = false;
-            action.addEventListener('data', () => {
+            emitter.on('data', () => {
                 eventEmitted = true;
             });
             assert.equal(eventEmitted, passOrFail);
+            done();
         });
 
         action(msg, cfg);
