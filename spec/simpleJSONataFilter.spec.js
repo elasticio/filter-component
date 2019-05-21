@@ -9,6 +9,7 @@ describe('Test filter', () => {
         let cfg = condition;
         //let actionObject = action(msg, cfg);
         it('Running tests', (done) => {
+            action(msg, cfg);
             let eventEmitted = false;
             emitter.on('data', () => {
                 eventEmitted = true;
@@ -16,8 +17,6 @@ describe('Test filter', () => {
             assert.equal(eventEmitted, passOrFail);
             done();
         });
-
-        action(msg, cfg);
     }
 
     // function filter(condition, passOrFail) {
