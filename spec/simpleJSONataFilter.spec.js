@@ -9,7 +9,7 @@ describe('Test filter', () => {
             expression: condition
         }
         let actionObject = action(msg, cfg);
-        it(condition, (done) => {
+        it('Running tests', (done) => {
             let eventEmitted = false;
 
             if (actionObject.on('data', () => {
