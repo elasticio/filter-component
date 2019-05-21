@@ -29,7 +29,6 @@
         "request-promise": "4.2.4"
     },
     "scripts": {
-        "pretest": "eslint lib/simpleJSONataFilter.js spec/simpleJSONataFilter.spec.js -fix",
         "test": "mocha spec/simpleJSONataFilter.spec.js"
     },
     "devDependencies": {
