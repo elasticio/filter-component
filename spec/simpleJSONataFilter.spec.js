@@ -46,21 +46,32 @@ describe('Test filter', () => {
     //         }, msg, cfg);
     //     });
     // }
+    const passCondition1 = true;
+    const passCondition2 = !false;
+    const passCondition3 = 20 > 5;
+    const passCondition4 = parseFloat('20.4') > 2;
+    const passCondition5 = 20.4 > 20;
+    const passCondition6 = moment(body.iso8601).day() == 1;
+
+    const failCondition1 = false;
+    const failCondition2 = !true;
+    const failCondition3 = 20 > 20;
+    const failCondition4 = 20.4 > 20.4;
 
     describe(' should fire event ', () => {
-        filter('true', true);
-        filter('!false', true);
-        filter('body.foo > 5', true);
-        filter('parseFloat(body.flString) > 2', true);
-        filter('body.flString > 20', true);
-        filter('moment(body.iso8601).day() == 1', true);
+        filter(passCondition1, true);
+        filter(passCondition2, true);
+        filter(passCondition3, true);
+        filter(passCondition4, true);
+        filter(passCondition5, true);
+        filter(passCondition6, true);
     });
 
     describe(' should not do anything ', () => {
-        filter('false', false);
-        filter('!true', false);
-        filter('body.foo > 20', false);
-        filter('body.float > 20.4', false);
+        filter(failCondition1, false);
+        filter(failCondition2, false);
+        filter(failCondition3, false);
+        filter(failCondition4, false);
     });
 
 });
