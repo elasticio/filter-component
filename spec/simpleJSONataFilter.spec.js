@@ -5,9 +5,7 @@ const action = require('../lib/actions/simpleJSONataFilter').process;
 describe('Test filter', () => {
     function filter(condition, passOrFail) {
         let msg = {};
-        let cfg = {
-            expression: condition
-        }
+        let cfg = condition;
         let actionObject = action(msg, cfg);
         it('Running tests', (done) => {
             let eventEmitted = false;
@@ -21,6 +19,7 @@ describe('Test filter', () => {
             }
         });
     }
+
     // function filter(condition, passOrFail) {
     //     it(condition, (done) => {
     //        let dataWasCalled = false;
@@ -46,17 +45,33 @@ describe('Test filter', () => {
     //         }, msg, cfg);
     //     });
     // }
-    const passCondition1 = true;
-    const passCondition2 = !false;
-    const passCondition3 = 20 > 5;
-    const passCondition4 = parseFloat('20.4') > 2;
-    const passCondition5 = 20.4 > 20;
-
-    const failCondition1 = false;
-    const failCondition2 = !true;
-    const failCondition3 = 20 > 20;
-    const failCondition4 = 20.4 > 20.4;
-
+    const passCondition1 = {
+        expression: true
+    };
+    const passCondition2 = {
+        expression: !false
+    };
+    const passCondition3 = {
+        expression: 20 > 5
+    };
+    const passCondition4 = {
+        expression: parseFloat('20.4') > 2
+    };
+    const passCondition5 = {
+        expression: 20.4 > 20
+    };
+    const failCondition1 = {
+        expression: false
+    };
+    const failCondition2 = {
+        expression: !true
+    };
+    const failCondition3 = {
+        expression: 20 > 20
+    };
+    const failCondition4 = {
+        expression: 20.4 > 20.4
+    };
     describe(' should fire event ', () => {
         filter(passCondition1, true);
         filter(passCondition2, true);
