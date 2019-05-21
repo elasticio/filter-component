@@ -51,7 +51,6 @@ describe('Test filter', () => {
     const passCondition3 = 20 > 5;
     const passCondition4 = parseFloat('20.4') > 2;
     const passCondition5 = 20.4 > 20;
-    const passCondition6 = moment(body.iso8601).day() == 1;
 
     const failCondition1 = false;
     const failCondition2 = !true;
@@ -64,7 +63,6 @@ describe('Test filter', () => {
         filter(passCondition3, true);
         filter(passCondition4, true);
         filter(passCondition5, true);
-        filter(passCondition6, true);
     });
 
     describe(' should not do anything ', () => {
