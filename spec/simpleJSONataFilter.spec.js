@@ -14,6 +14,7 @@ describe('Test filter', () => {
                 if (type) {
                     assert.isDefined(value);
                     eventEmitted = true;
+                    done();
                 } else {
                     assert.isUndefined(value);
                     assert.equal(eventEmitted, passOrFail);
