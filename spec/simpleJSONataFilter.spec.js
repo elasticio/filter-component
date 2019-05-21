@@ -1,23 +1,44 @@
+/* eslint-env node, mocha */
 'use strict';
+
 const assert = require('chai').assert;
 const action = require('../lib/actions/simpleJSONataFilter').process;
 const emitter = require('../lib/actions/simpleJSONataFilter').emitter;
 
 describe('Test filter', () => {
+    const msg = {};
     function filter(condition, passOrFail) {
-        let msg = {};
-        let cfg = condition;
-        //let actionObject = action(msg, cfg);
         it('Running tests', (done) => {
-            action(msg, cfg);
             let eventEmitted = false;
-            emitter.on('data', () => {
-                eventEmitted = true;
-            });
-            assert.equal(eventEmitted, passOrFail);
-            done();
+            function onEmit(type, value) {
+                if (type) {
+                    assert.isDefined(value);
+                    eventEmitted = true;
+                } else {
+                    assert.isUndefined(value);
+                    assert.equal(eventEmitted, passOrFail);
+                    done();
+                }
+            }
+
+            const cfg = condition;
+            action.call({
+                emit: onEmit
+            }, msg, cfg);
         });
     }
+
+        //let actionObject = action(msg, cfg);
+    //     it('Running tests', (done) => {
+    //         action(msg, cfg);
+    //         let eventEmitted = false;
+    //         emitter.on('data', () => {
+    //             eventEmitted = true;
+    //         });
+    //         assert.equal(eventEmitted, passOrFail);
+    //         done();
+    //     });
+    // }
 
     // function filter(condition, passOrFail) {
     //     it(condition, (done) => {
