@@ -6,11 +6,11 @@ describe('Test filter', () => {
     function filter(condition, passOrFail) {
         let msg = {};
         let cfg = condition;
-        let actionObject = action(msg, cfg);
+        //let actionObject = action(msg, cfg);
         it('Running tests', (done) => {
             let eventEmitted = false;
 
-            if (actionObject.on('data', () => {
+            if (action.on('data', () => {
                 eventEmitted = true;
             })) {
                 assert.equal(eventEmitted, passOrFail);
