@@ -6,7 +6,7 @@ describe('Test filter', () => {
     function filter(condition, passOrFail) {
         let msg = {};
         let cfg = {
-            condition: condition
+            expression: condition
         }
         let actionObject = action(msg, cfg);
         it(condition, (done) => {
