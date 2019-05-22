@@ -2,7 +2,6 @@
 'use strict';
 
 const assert = require('chai').assert;
-const jsonata = require('@elastic.io/jsonata-moment');
 const action = require('../lib/actions/simpleJSONataFilter');
 
 describe('Test filter', () => {
