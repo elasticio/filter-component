@@ -1,4 +1,4 @@
-# Filter Component [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
+# Filter Component [![NPM version][npm-image]][npm-url] ![circle-url]
 
 ## Description
 
@@ -72,7 +72,6 @@ Apache-2.0 © [elastic.io GmbH](https://www.elastic.io)
 
 [npm-image]: https://badge.fury.io/js/filter-component.svg
 [npm-url]: https://npmjs.org/package/filter-component
-[travis-image]: https://travis-ci.org/elasticio/filter-component.svg?branch=master
-[travis-url]: https://travis-ci.org/elasticio/filter-component
+[circle-url]: https://circleci.com/gh/elasticio/filter-component/tree/update-filter.svg?style=svg
 [daviddm-image]: https://david-dm.org/elasticio/filter-component.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/elasticio/filter-component
