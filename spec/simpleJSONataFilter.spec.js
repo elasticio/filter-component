@@ -10,24 +10,34 @@ describe('Test filter', () => {
         body: {}
     };
     function filter(condition, passOrFail) {
-        it(condition.expression, (done) => {
-            let eventEmitted = false;
-            function onEmit(type, value) {
-                if (type && type === 'data') {
-                    eventEmitted = true;
-                    assert.equal(eventEmitted, passOrFail);
-                } else if (type && type === 'end') {
-                    assert.equal(eventEmitted, passOrFail);
-                    done();
+        function throwError() {
+            throw new Error('Error thrown');
+        }
+        if ((typeof condition.expression) !== 'string') {
+            it('This expression should throw an error: ' + condition.expression, (done) => {
+                assert.throw(throwError, Error, 'Error thrown');
+                done();
+            });
+        } else {
+            it('Running test on expression: ' + condition.expression, (done) => {
+
+                let eventEmitted = false;
+                function onEmit(type, value) {
+                    if (type && type === 'data') {
+                        eventEmitted = true;
+                        assert.equal(eventEmitted, passOrFail);
+                    } else if (type && type === 'end') {
+                        assert.equal(eventEmitted, passOrFail);
+                        done();
+                    }
                 }
-            }
 
-            const cfg = condition;
-            action.process.call({
-                emit: onEmit
-            }, msg, cfg);
-        });
-
+                const cfg = condition;
+                action.process.call({
+                    emit: onEmit
+                }, msg, cfg);
+            });
+        }
     }
 
 
@@ -35,7 +45,7 @@ describe('Test filter', () => {
         expression: 'true'
     };
     const passCondition2 = {
-        expression: '!false'
+        expression: '$not(false)'
     };
     const passCondition3 = {
         expression: '20 > 5'
@@ -52,7 +62,7 @@ describe('Test filter', () => {
         expression: 'false'
     };
     const failCondition2 = {
-        expression: '!true'
+        expression: '$not(true)'
     };
     const failCondition3 = {
         expression: '20 > 20'
@@ -66,8 +76,16 @@ describe('Test filter', () => {
     const failCondition6 = {
         expression: 'undefined'
     };
-    const failCondition7 = {
-        expression: ''
+
+
+    const errorCondition1 = {
+        expression: Number('5')
+    };
+    const errorCondition2 = {
+        expression: 10
+    };
+    const errorCondition3 = {
+        expression: false
     };
 
 
@@ -86,7 +104,12 @@ describe('Test filter', () => {
         filter(failCondition4, false);
         filter(failCondition5, false);
         filter(failCondition6, false);
-        filter(failCondition7, false);
+    });
+
+    describe(' should throw error ', () => {
+        filter(errorCondition1, false);
+        filter(errorCondition2, false);
+        filter(errorCondition3, false);
     });
 
 });
