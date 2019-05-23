@@ -6,38 +6,38 @@ const action = require('../lib/actions/simpleJSONataFilter');
 
 describe('Test filter', () => {
     const msg = {
-        body: {}
+        body: {
+            hello: 'world'
+        }
     };
-    function filter(condition, passOrFail) {
+
+    function errorCondition(condition) {
         function throwError() {
             throw new Error('Error thrown');
         }
-        if ((typeof condition.expression) !== 'string') {
-            it('This expression should throw an error: ' + condition.expression, (done) => {
-                assert.throw(throwError, Error, 'Error thrown');
-                done();
-            });
-        } else {
-            it('Running test on expression: ' + condition.expression, (done) => {
-
-                let eventEmitted = false;
-                // eslint-disable-next-line no-unused-vars
-                function onEmit(type, value) {
-                    if (type && type === 'data') {
-                        eventEmitted = true;
-                        assert.equal(eventEmitted, passOrFail);
-                    } else if (type && type === 'end') {
-                        assert.equal(eventEmitted, passOrFail);
-                        done();
-                    }
+        it('This expression should throw an error: ' + condition.expression, (done) => {
+            assert.throw(throwError, Error, 'Error thrown');
+            done();
+        });
+    }
+    function filter(condition, passOrFail) {
+        it('Running test on expression: ' + condition.expression, (done) => {
+            let eventEmitted = false;
+            // eslint-disable-next-line no-unused-vars
+            function onEmit(type, value) {
+                if (type && type === 'data') {
+                    eventEmitted = true;
+                    assert.equal(eventEmitted, passOrFail);
+                } else if (type && type === 'end') {
+                    assert.equal(eventEmitted, passOrFail);
+                    done();
                 }
-
-                const cfg = condition;
-                action.process.call({
-                    emit: onEmit
-                }, msg, cfg);
-            });
-        }
+            }
+            const cfg = condition;
+            action.process.call({
+                emit: onEmit
+            }, msg, cfg);
+        });
     }
 
 
@@ -79,13 +79,7 @@ describe('Test filter', () => {
 
 
     const errorCondition1 = {
-        expression: Number('5')
-    };
-    const errorCondition2 = {
-        expression: 10
-    };
-    const errorCondition3 = {
-        expression: false
+        expression: '$number("msg.body.hello") > 5'
     };
 
 
@@ -107,9 +101,7 @@ describe('Test filter', () => {
     });
 
     describe(' should throw error ', () => {
-        filter(errorCondition1, false);
-        filter(errorCondition2, false);
-        filter(errorCondition3, false);
+        errorCondition(errorCondition1);
     });
 
 });
