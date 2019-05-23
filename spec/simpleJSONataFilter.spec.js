@@ -21,6 +21,7 @@ describe('Test filter', () => {
             it('Running test on expression: ' + condition.expression, (done) => {
 
                 let eventEmitted = false;
+                // eslint-disable-next-line no-unused-vars
                 function onEmit(type, value) {
                     if (type && type === 'data') {
                         eventEmitted = true;
