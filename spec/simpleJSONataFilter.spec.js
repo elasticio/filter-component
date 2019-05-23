@@ -11,32 +11,41 @@ describe('Test filter', () => {
         }
     };
 
-    function errorCondition(condition) {
-        function throwError() {
-            throw new Error('Error thrown');
+    async function errorCondition(condition) {
+
+        let eventEmitted = false;
+        let errorEmitted;
+        // eslint-disable-next-line no-unused-vars
+        async function onEmit(type, value) {
+            if (type && type === 'data') {
+                eventEmitted = true;
+            }
         }
-        it('This expression should throw an error: ' + condition.expression, (done) => {
-            assert.throw(throwError, Error, 'Error thrown');
-            done();
-        });
+        const cfg = condition;
+        try {
+            await action.process.call({
+                emit: onEmit
+            }, msg, cfg);
+        } catch (err) {
+            errorEmitted = err;
+        }
+        assert.equal(eventEmitted, false);
+        assert.equal(errorEmitted.message, 'Unable to cast value to a number: "world"');
     }
     function filter(condition, passOrFail) {
-        it('Running test on expression: ' + condition.expression, (done) => {
+        it('Running test on expression: ' + condition.expression, async () => {
             let eventEmitted = false;
             // eslint-disable-next-line no-unused-vars
-            function onEmit(type, value) {
+            async function onEmit(type, value) {
                 if (type && type === 'data') {
                     eventEmitted = true;
-                    assert.equal(eventEmitted, passOrFail);
-                } else if (type && type === 'end') {
-                    assert.equal(eventEmitted, passOrFail);
-                    done();
                 }
             }
             const cfg = condition;
-            action.process.call({
+            await action.process.call({
                 emit: onEmit
             }, msg, cfg);
+            assert.equal(eventEmitted, passOrFail);
         });
     }
 
@@ -79,7 +88,7 @@ describe('Test filter', () => {
 
 
     const errorCondition1 = {
-        expression: '$number("msg.body.hello") > 5'
+        expression: '$number(hello) > 5'
     };
 
 
@@ -100,8 +109,8 @@ describe('Test filter', () => {
         filter(failCondition6, false);
     });
 
-    describe(' should throw error ', () => {
-        errorCondition(errorCondition1);
+    it(' should throw error ', async () => {
+        await errorCondition(errorCondition1);
     });
 
 });
