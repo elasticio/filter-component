@@ -2,69 +2,48 @@
 
 ## Description
 
-A component to filter the incoming data based on arbitrary expression.
+A component to filter the incoming data based on an arbitrary JSONata expression.
 
 ## How it works
 
-Filter will pass though incoming message if it match the condition specified in
-the configuration. Expression is actually any JavaScript expression, so you can
-be creative. For example following expressions are possible:
+Filter will pass through the incoming data if it matches the JSONata condition specified
+in the configuration. The expression can be any valid __JSONata__ expression, so you can be creative.
+Here are some examples that are possible:
 
 *   `true`
 *   `false`
-*   `!false`
+*   `$not(false)`
+*   `$not(true)`
+*    `20 > 5`
 *   `body.foo` - will be true if `body.foo` is defined and not `false`
-*   `body.foo > 5`
-*   `parseFloat(body.flString) > 2`
-*   `body.flString > 20`
-*   `moment(body.iso8601).day() == 1`
-*   `moment(body.start_at).isAfter(moment("1995-12-24"))`
-
-The expression that you use in filer will be evaluated in the
-[fresh JS context](https://nodejs.org/api/vm.html#vm_script_runinnewcontext_sandbox_options)
-but you can expect following in the context:
-
-*   `body` - this is the body of incoming message
-*   `attachments` - attachments from incoming message
-*   `headers` - headers for incoming message
-*   `moment` - useful library for date and time transformation, documentation can be found [here](https://momentjs.com/).
-
-Rejected messages could be **optionally** sent to the other integration flow,
-but please note that only integration flows that start with **Webhook** and may
-potentially accept the incoming data could be selected as reject flow.
 
 ## Requirements
 
 ### Environment variables
 
-By default no environment variable is necessary to operate the component. However,
-a tenant level environment variables must be added to the component repository.
-
-### Tenant level environment variable
-
-Current version of the component requires a Webhook URL basis for your environment
-
-*  `HOOKS_URL` - basis url for your webhooks, like `https://tenant-address/hook/` (note the slash at the end)
+By default no environment variable is necessary to operate the component.
 
 ## Triggers
 
-This component has no trigger functions. This means it will not be accessible to
-select as a first component during the integration flow design.
+This component has no trigger functions. This means it will not be selectable as 
+the first component in an integration flow.
 
 ## Actions
 
 ### Filter
 
-This triggers has two parameters:
+This action has two parameters:
 
-*   `Filter condition` - A JavaScript expression which should be evaluated to a Boolean values of `true` or `false`. If it is evaluated `false` message will be rejected.
-*   `Send rejected messages to` - An optional parameter with a possibility to select the flow ID which would receive the message in case the first parameter was evaluated `false`. Only WebHook flow can be selected.
+*   `Filter condition` - A __JSONata__ expression passed in through the cfg. The expression will be evaluated to a value of  `true` or `false`. If 
+it is evaluated to `false`, a message will be logged to the console and the msg will not be sent forward to the next component. If evaluated `true`, a
+new message with empty body will be passed forward along with all data that passed the condition.
 
-## Known limitations
 
-*   Reject task should be:
-*   Start with {{site.data.tenant.name}} standard WebHook
-*   Only body of the rejected message got propagated to reject flow, not the attachments or headers
+## Known limitations/Additional Notes
+
+*   The JSONata expression can be a valid expression however it can cause an error to be thrown if it is invalid based on the context. For example, 
+`$number(hello) > 5` where `hello: "world"`. This JSONata expression is valid but an error will be thrown as `hello` is NaN.
+ 
 ## License
 
 Apache-2.0 © [elastic.io GmbH](https://www.elastic.io)
@@ -74,4 +53,3 @@ Apache-2.0 © [elastic.io GmbH](https://www.elastic.io)
 [npm-url]: https://npmjs.org/package/filter-component
 [circle-url]: https://circleci.com/gh/elasticio/filter-component/tree/update-filter.svg?style=svg
 [daviddm-image]: https://david-dm.org/elasticio/filter-component.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/elasticio/filter-component
