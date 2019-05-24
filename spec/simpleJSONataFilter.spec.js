@@ -4,6 +4,9 @@
 const expect = require('chai').expect;
 const action = require('../lib/actions/simpleJSONataFilter');
 const sinon = require('sinon');
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
+chai.use(chaiAsPromised);
 
 describe('Test filter', () => {
     const msg = {
@@ -13,14 +16,7 @@ describe('Test filter', () => {
     };
 
     async function errorCondition(condition) {
-        const spy = sinon.spy(action, 'process');
-        let errorEmitted;
-        try {
-            await spy(msg, condition);
-        } catch (err) {
-            errorEmitted = err;
-        }
-        expect(errorEmitted.message).to.equal('Unable to cast value to a number: "world"');
+        expect(action.process(msg, condition)).to.eventually.be.rejected;
     }
 
     function filter(condition, passOrFail) {
