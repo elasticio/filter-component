@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 'use strict';
 
-const assert = require('chai').assert;
+const expect = require('chai').expect;
 const action = require('../lib/actions/simpleJSONataFilter');
 
 describe('Test filter', () => {
@@ -29,9 +29,10 @@ describe('Test filter', () => {
         } catch (err) {
             errorEmitted = err;
         }
-        assert.equal(eventEmitted, false);
-        assert.equal(errorEmitted.message, 'Unable to cast value to a number: "world"');
+        expect(eventEmitted).to.equal(false);
+        expect(errorEmitted.message).to.equal('Unable to cast value to a number: "world"');
     }
+
     function filter(condition, passOrFail) {
         it('Running test on expression: ' + condition.expression, async () => {
             let eventEmitted = false;
@@ -45,7 +46,7 @@ describe('Test filter', () => {
             await action.process.call({
                 emit: onEmit
             }, msg, cfg);
-            assert.equal(eventEmitted, passOrFail);
+            expect(eventEmitted).to.equal(passOrFail);
         });
     }
 
