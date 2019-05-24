@@ -3,6 +3,7 @@
 
 const expect = require('chai').expect;
 const action = require('../lib/actions/simpleJSONataFilter');
+const sinon = require('sinon');
 
 describe('Test filter', () => {
     const msg = {
@@ -12,41 +13,24 @@ describe('Test filter', () => {
     };
 
     async function errorCondition(condition) {
-
-        let eventEmitted = false;
+        const spy = sinon.spy(action, 'process');
         let errorEmitted;
-        // eslint-disable-next-line no-unused-vars
-        async function onEmit(type, value) {
-            if (type && type === 'data') {
-                eventEmitted = true;
-            }
-        }
-        const cfg = condition;
         try {
-            await action.process.call({
-                emit: onEmit
-            }, msg, cfg);
+            await spy(msg, condition);
         } catch (err) {
             errorEmitted = err;
         }
-        expect(eventEmitted).to.equal(false);
         expect(errorEmitted.message).to.equal('Unable to cast value to a number: "world"');
     }
 
     function filter(condition, passOrFail) {
         it('Running test on expression: ' + condition.expression, async () => {
-            let eventEmitted = false;
-            // eslint-disable-next-line no-unused-vars
-            async function onEmit(type, value) {
-                if (type && type === 'data') {
-                    eventEmitted = true;
-                }
-            }
-            const cfg = condition;
+            const spy = sinon.spy();
             await action.process.call({
-                emit: onEmit
-            }, msg, cfg);
-            expect(eventEmitted).to.equal(passOrFail);
+                emit: spy
+            }, msg, condition);
+            expect(spy.calledOnce).to.equal(passOrFail);
+
         });
     }
 
