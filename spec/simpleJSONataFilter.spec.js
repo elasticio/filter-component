@@ -15,27 +15,22 @@ describe('Test filter', () => {
         }
     };
 
-    function errorCondition(condition) {
-        it('Running test on error condition: ' + condition.expression, async () => {
-            let Error;
-            try {
-                await action.process(msg, condition);
-            } catch (error) {
-                Error = error;
-            }
-            expect(Error.message).to.be.equal('Unable to cast value to a number: "world"');
-        });
+    async function errorCondition(condition) {
+        let Error;
+        try {
+            await action.process(msg, condition);
+        } catch (error) {
+            Error = error;
+        }
+        expect(Error.message).to.be.equal('Unable to cast value to a number: "world"');
     }
 
-    function filter(condition, passOrFail) {
-        it('Running test on pass/fail expression: ' + condition.expression, async () => {
-            const spy = sinon.spy();
-            await action.process.call({
-                emit: spy
-            }, msg, condition);
-            expect(spy.calledOnce).to.equal(passOrFail);
-
-        });
+    async function filter(condition, passOrFail) {
+        const spy = sinon.spy();
+        await action.process.call({
+            emit: spy
+        }, msg, condition);
+        expect(spy.calledOnce).to.equal(passOrFail);
     }
 
 
@@ -81,25 +76,25 @@ describe('Test filter', () => {
     };
 
 
-    describe(' should fire event ', () => {
-        filter(passCondition1, true);
-        filter(passCondition2, true);
-        filter(passCondition3, true);
-        filter(passCondition4, true);
-        filter(passCondition5, true);
+    it(' should fire event ', async () => {
+        await filter(passCondition1, true);
+        await filter(passCondition2, true);
+        await filter(passCondition3, true);
+        await filter(passCondition4, true);
+        await filter(passCondition5, true);
     });
 
-    describe(' should not do anything ', () => {
-        filter(failCondition1, false);
-        filter(failCondition2, false);
-        filter(failCondition3, false);
-        filter(failCondition4, false);
-        filter(failCondition5, false);
-        filter(failCondition6, false);
+    it(' should not do anything ', async () => {
+        await filter(failCondition1, false);
+        await filter(failCondition2, false);
+        await filter(failCondition3, false);
+        await filter(failCondition4, false);
+        await filter(failCondition5, false);
+        await filter(failCondition6, false);
     });
 
-    describe(' should throw error ', () => {
-        errorCondition(errorCondition1);
+    it(' should throw error ', async () => {
+        await errorCondition(errorCondition1);
     });
 
 });
