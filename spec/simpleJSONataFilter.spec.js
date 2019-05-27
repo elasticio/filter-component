@@ -15,12 +15,20 @@ describe('Test filter', () => {
         }
     };
 
-    async function errorCondition(condition) {
-        expect(action.process(msg, condition)).to.eventually.be.rejected;
+    function errorCondition(condition) {
+        it('Running test on error condition: ' + condition.expression, async () => {
+            let Error;
+            try {
+                await action.process(msg, condition);
+            } catch (error) {
+                Error = error;
+            }
+            expect(Error.message).to.be.equal('Unable to cast value to a number: "world"');
+        });
     }
 
     function filter(condition, passOrFail) {
-        it('Running test on expression: ' + condition.expression, async () => {
+        it('Running test on pass/fail expression: ' + condition.expression, async () => {
             const spy = sinon.spy();
             await action.process.call({
                 emit: spy
@@ -90,8 +98,8 @@ describe('Test filter', () => {
         filter(failCondition6, false);
     });
 
-    it(' should throw error ', async () => {
-        await errorCondition(errorCondition1);
+    describe(' should throw error ', () => {
+        errorCondition(errorCondition1);
     });
 
 });
