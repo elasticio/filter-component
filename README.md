@@ -39,7 +39,7 @@ it is evaluated to `false`, a message will be logged to the console and the msg 
 new message with empty body will be passed forward along with all data that passed the condition.
 
 
-## Known limitations/Additional Notes
+## Additional Notes
 
 *   The JSONata expression can be a valid expression however it can cause an error to be thrown if it is invalid based on the context. For example, 
 `$number(hello) > 5` where `hello: "world"`. This JSONata expression is valid but an error will be thrown as `hello` is NaN.
