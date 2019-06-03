@@ -34,7 +34,7 @@
                 "expression": {
                     "label": "JSONata Expression",
                     "required": true,
-                    "viewClass": "SelectView"
+                    "viewClass": "TextAreaView"
                 }
             }
         }
