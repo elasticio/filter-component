@@ -30,7 +30,7 @@ the first component in an integration flow.
 
 ## Actions
 
-### Simple JSONata filter
+### Simple JSONata Filter
 
 This action has two parameters:
 
