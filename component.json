@@ -30,7 +30,6 @@
             "description": "Please use this action in place of the deprecated Filter action.",
             "main": "./lib/actions/simpleJSONataFilter.js",
             "fields": {
-                "label": "JSONata Expression",
                 "expression": {
                     "label": "JSONata Expression",
                     "required": true,
