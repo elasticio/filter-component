@@ -33,7 +33,7 @@
                 "expression": {
                     "label": "JSONata Expression",
                     "required": true,
-                    "viewClass": "TextAreaView"
+                    "viewClass": "JSONataView"
                 }
             }
         }
