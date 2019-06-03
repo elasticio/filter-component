@@ -30,7 +30,7 @@ the first component in an integration flow.
 
 ## Actions
 
-### Filter
+### Simple JSONata filter
 
 This action has two parameters:
 
@@ -41,7 +41,7 @@ new message with empty body will be passed forward along with all data that pass
 
 ## Additional Notes
 
-*   The JSONata expression can be a valid expression however it can cause an error to be thrown if it is invalid based on the context. For example, 
+*   The JSONata Filter expression can be a valid expression however it can cause an error to be thrown if it is invalid based on the context. For example, 
 `$number(hello) > 5` where `hello: "world"`. This JSONata expression is valid but an error will be thrown as `hello` is NaN.
  
 ## License
