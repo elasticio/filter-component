@@ -3,7 +3,9 @@
     "description": "elastic.io filter component to filter incoming data based on arbitrary expression",
     "actions": {
         "filter": {
-            "title": "Filter",
+            "deprecated": true,
+            "title": "Filter (Deprecated)",
+            "description": "This action is deprecated, please use Simple JSONata Filter instead.",
             "main": "./lib/actions/filter.js",
             "fields": {
                 "condition": {
@@ -22,6 +24,18 @@
                 }
             },
             "metadata": {}
+        },
+        "SimpleJSONataFilter": {
+            "title": "Simple JSONata Filter",
+            "description": "Please use this action in place of the deprecated Filter action.",
+            "main": "./lib/actions/simpleJSONataFilter.js",
+            "fields": {
+                "expression": {
+                    "label": "JSONata Expression",
+                    "required": true,
+                    "viewClass": "JSONataView"
+                }
+            }
         }
     }
 }
