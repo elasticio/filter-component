@@ -139,7 +139,7 @@ describe('Test filter', () => {
 
     const passthroughCondition1 = {
         expression: 'elasticio.step_1.body.one = elasticio.step_2.body.two'
-    }
+    };
 
     describe('Should emit message', async () => {
         it(passthroughCondition1.expression, async () => {await passthroughFilter(passthroughCondition1, true);});
