@@ -9,7 +9,7 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
 describe('Test filter', () => {
-    let msg = {
+    const simpleMsg = {
         body: {
             hello: 'world'
         }
@@ -18,7 +18,7 @@ describe('Test filter', () => {
     async function errorCondition(condition) {
         let Error;
         try {
-            await action.process(msg, condition);
+            await action.process(simpleMsg, condition);
         } catch (error) {
             Error = error;
         }
@@ -29,70 +29,70 @@ describe('Test filter', () => {
         const spy = sinon.spy();
         await action.process.call({
             emit: spy
-        }, msg, condition);
+        }, simpleMsg, condition);
         expect(spy.calledOnce).to.equal(passOrFail);
     }
 
-    async function passthroughFilter(condition, passOrFail) {
-        if (passOrFail) {
-            let msg = {
-                passthrough: {
-                    step_2: {
-                        body: {
-                            two: 'sample'
-                        }
-                    },
-                    step_1: {
-                        body: {
-                            one: 'sample'
-                        }
+    async function passthroughFilter(condition) {
+        const passthroughMsg = {
+            passthrough: {
+                step_2: {
+                    body: {
+                        two: 'sample'
                     }
                 },
-                body: {
-                    step_2: {
-                        body: {
-                            two: 'sample'
-                        }
+                step_1: {
+                    body: {
+                        one: 'sample'
                     }
                 }
-            };
-            const spy = sinon.spy();
-            await action.process.call({
-                emit: spy
-            }, msg, condition);
-            expect(spy.calledOnce).to.equal(passOrFail);
-        } else {
-            let msg = {
-                passthrough: {
-                    step_2: {
-                        body: {
-                            two: 'sample'
-                        }
-                    },
-                    step_1: {
-                        body: {
-                            one: 'sample'
-                        }
-                    }
-                },
-                body: {
-                    elasticio: {},
-                    step_2: {
-                        body: {
-                            two: 'sample'
-                        }
+            },
+            body: {
+                step_2: {
+                    body: {
+                        two: 'sample'
                     }
                 }
-            };
-            let Error;
-            try {
-                await action.process(msg, condition);
-            } catch (error) {
-                Error = error;
             }
-            expect(Error.message).to.be.equal('elasticio property is reserved \
-            if you are using passthrough functionality');
+        };
+        const spy = sinon.spy();
+        await action.process.call({
+            emit: spy
+        }, passthroughMsg, condition);
+        expect(spy.calledOnce).to.equal(true);
+    }
+
+    async function passthroughError(condition) {
+        let passthroughErrorMsg = {
+            passthrough: {
+                step_2: {
+                    body: {
+                        two: 'sample'
+                    }
+                },
+                step_1: {
+                    body: {
+                        one: 'sample'
+                    }
+                }
+            },
+            body: {
+                elasticio: {},
+                step_2: {
+                    body: {
+                        two: 'sample'
+                    }
+                }
+            }
+        };
+        let Error;
+        try {
+            await action.process(passthroughErrorMsg, condition);
+        } catch (error) {
+            Error = error;
         }
+        expect(Error.message).to.be.equal('elasticio property is reserved \
+            if you are using passthrough functionality');
     }
 
 
@@ -142,7 +142,7 @@ describe('Test filter', () => {
     };
 
     describe('Should emit message', async () => {
-        it(passthroughCondition1.expression, async () => {await passthroughFilter(passthroughCondition1, true);});
+        it(passthroughCondition1.expression, async () => {await passthroughFilter(passthroughCondition1);});
     });
 
 
@@ -165,7 +165,7 @@ describe('Test filter', () => {
 
     describe('Should throw error', async () => {
         it(errorCondition1.expression, async () => {await errorCondition(errorCondition1);});
-        it(passthroughCondition1.expression, async () => {await passthroughFilter(passthroughCondition1, false);});
+        it(passthroughCondition1.expression, async () => {await passthroughError(passthroughCondition1);});
     });
 
 });
