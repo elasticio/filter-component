@@ -143,7 +143,6 @@ describe('Test filter', () => {
 
     describe('Should emit message', async () => {
         it(passthroughCondition1.expression, async () => {await passthroughFilter(passthroughCondition1, true);});
-        it(passthroughCondition1.expression, async () => {await passthroughFilter(passthroughCondition1, false);});
     });
 
 
@@ -166,6 +165,7 @@ describe('Test filter', () => {
 
     describe('Should throw error', async () => {
         it(errorCondition1.expression, async () => {await errorCondition(errorCondition1);});
+        it(passthroughCondition1.expression, async () => {await passthroughFilter(passthroughCondition1, false);});
     });
 
 });
