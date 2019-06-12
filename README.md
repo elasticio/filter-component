@@ -51,5 +51,5 @@ Apache-2.0 © [elastic.io GmbH](https://www.elastic.io)
 
 [npm-image]: https://badge.fury.io/js/filter-component.svg
 [npm-url]: https://npmjs.org/package/filter-component
-[circle-url]: https://circleci.com/gh/elasticio/filter-component/tree/update-filter.svg?style=svg
+[circle-url]: https://circleci.com/gh/elasticio/filter-component.svg?style=svg
 [daviddm-image]: https://david-dm.org/elasticio/filter-component.svg?theme=shields.io
