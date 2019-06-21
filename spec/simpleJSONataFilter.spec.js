@@ -9,7 +9,7 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
 describe('Test filter', () => {
-    const msg = {
+    const simpleMsg = {
         body: {
             hello: 'world'
         }
@@ -18,7 +18,7 @@ describe('Test filter', () => {
     async function errorCondition(condition) {
         let Error;
         try {
-            await action.process(msg, condition);
+            await action.process(simpleMsg, condition);
         } catch (error) {
             Error = error;
         }
@@ -29,8 +29,70 @@ describe('Test filter', () => {
         const spy = sinon.spy();
         await action.process.call({
             emit: spy
-        }, msg, condition);
+        }, simpleMsg, condition);
         expect(spy.calledOnce).to.equal(passOrFail);
+    }
+
+    async function passthroughFilter(condition) {
+        const passthroughMsg = {
+            passthrough: {
+                step_2: {
+                    body: {
+                        two: 'sample'
+                    }
+                },
+                step_1: {
+                    body: {
+                        one: 'sample'
+                    }
+                }
+            },
+            body: {
+                step_2: {
+                    body: {
+                        two: 'sample'
+                    }
+                }
+            }
+        };
+        const spy = sinon.spy();
+        await action.process.call({
+            emit: spy
+        }, passthroughMsg, condition);
+        expect(spy.calledOnce).to.equal(true);
+    }
+
+    async function passthroughError(condition) {
+        let passthroughErrorMsg = {
+            passthrough: {
+                step_2: {
+                    body: {
+                        two: 'sample'
+                    }
+                },
+                step_1: {
+                    body: {
+                        one: 'sample'
+                    }
+                }
+            },
+            body: {
+                elasticio: {},
+                step_2: {
+                    body: {
+                        two: 'sample'
+                    }
+                }
+            }
+        };
+        let Error;
+        try {
+            await action.process(passthroughErrorMsg, condition);
+        } catch (error) {
+            Error = error;
+        }
+        expect(Error.message).to.be.equal('elasticio property is reserved \
+            if you are using passthrough functionality');
     }
 
 
@@ -75,8 +137,16 @@ describe('Test filter', () => {
         expression: '$number(hello) > 5'
     };
 
+    const passthroughCondition1 = {
+        expression: 'elasticio.step_1.body.one = elasticio.step_2.body.two'
+    };
 
-    describe(' should fire event ', async () => {
+    describe('Should emit message', async () => {
+        it(passthroughCondition1.expression, async () => {await passthroughFilter(passthroughCondition1);});
+    });
+
+
+    describe('Should emit message', async () => {
         it(passCondition1.expression, async () => {await filter(passCondition1, true);});
         it(passCondition2.expression, async () => {await filter(passCondition2, true);});
         it(passCondition3.expression, async () => {await filter(passCondition3, true);});
@@ -84,7 +154,7 @@ describe('Test filter', () => {
         it(passCondition5.expression, async () => {await filter(passCondition5, true);});
     });
 
-    describe(' should just log message to console ', async () => {
+    describe('Should log message to console', async () => {
         it(passCondition1.expression, async () => {await filter(failCondition1, false);});
         it(failCondition2.expression, async () => {await filter(failCondition2, false);});
         it(failCondition3.expression, async () => {await filter(failCondition3, false);});
@@ -93,8 +163,9 @@ describe('Test filter', () => {
         it(failCondition6.expression, async () => {await filter(failCondition6, false);});
     });
 
-    describe(' should throw error ', async () => {
+    describe('Should throw error', async () => {
         it(errorCondition1.expression, async () => {await errorCondition(errorCondition1);});
+        it(passthroughCondition1.expression, async () => {await passthroughError(passthroughCondition1);});
     });
 
 });
