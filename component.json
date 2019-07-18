@@ -39,7 +39,7 @@
         },
         "Assertion": {
             "title": "Assertion",
-            "description": "Use this action over Simple JSONata Filter action if you want errors thrown when conditions aren't met",
+            "description": "Use this action over 'Simple JSONata Filter' action if you want errors thrown when conditions aren't met",
             "main": "./lib/actions/assertion.js",
             "fields": {
                 "expression": {
