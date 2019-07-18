@@ -38,6 +38,9 @@ This action has two parameters:
 it is evaluated to `false`, a message will be logged to the console and the msg will not be sent forward to the next component. If evaluated `true`, a
 new message with empty body will be passed forward along with all data that passed the condition.
 
+### Assertion
+
+This action works exactly like `Simple JSONata Filter` action, however it throws an error when the condition is not met.
 
 ## Additional Notes
 
