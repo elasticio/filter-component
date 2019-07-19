@@ -34,6 +34,11 @@
                     "label": "JSONata Expression",
                     "required": true,
                     "viewClass": "JSONataView"
+                },
+                "assertion": {
+                    "label": "Assertion",
+                    "Note": "Check this when you want to throw error when condition is not met",
+                    "viewClass": "CheckBoxView"
                 }
             }
         }

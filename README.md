@@ -38,7 +38,6 @@ This action has two parameters:
 it is evaluated to `false`, a message will be logged to the console and the msg will not be sent forward to the next component. If evaluated `true`, a
 new message with empty body will be passed forward along with all data that passed the condition.
 
-
 ## Additional Notes
 
 *   The JSONata Filter expression can be a valid expression however it can cause an error to be thrown if it is invalid based on the context. For example, 
