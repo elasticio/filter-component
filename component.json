@@ -4,7 +4,7 @@
     "actions": {
         "filter": {
             "deprecated": true,
-            "title": "Filter (Deprecated)",
+            "title": "Filter",
             "description": "This action is deprecated, please use Simple JSONata Filter instead.",
             "main": "./lib/actions/filter.js",
             "fields": {
@@ -34,6 +34,11 @@
                     "label": "JSONata Expression",
                     "required": true,
                     "viewClass": "JSONataView"
+                },
+                "assertion": {
+                    "label": "Assertion",
+                    "Note": "Check this when you want to throw error when condition is not met",
+                    "viewClass": "CheckBoxView"
                 }
             }
         }

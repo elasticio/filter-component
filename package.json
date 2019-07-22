@@ -31,7 +31,7 @@
     },
     "scripts": {
         "pretest": "eslint lib/simpleJSONataFilter.js spec/simpleJSONataFilter.spec.js --fix",
-        "test": "mocha spec/simpleJSONataFilter.spec.js"
+        "test": "mocha spec --recursive"
     },
     "devDependencies": {
         "chai": "3.5.0",

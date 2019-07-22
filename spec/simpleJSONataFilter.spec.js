@@ -95,6 +95,39 @@ describe('Test filter', () => {
             if you are using passthrough functionality');
     }
 
+    async function assertionTest(condition) {
+        const msg = {
+            passthrough: {
+                step_2: {
+                    body: {
+                        two: 'sample2'
+                    }
+                },
+                step_1: {
+                    body: {
+                        one: 'sample1'
+                    }
+                }
+            },
+            body: {
+                step_2: {
+                    body: {
+                        two: 'sample2'
+                    }
+                }
+            }
+        };
+
+        condition.assertion = true;
+        let Error;
+        try {
+            await action.process(msg, condition);
+        } catch (error) {
+            Error = error;
+        }
+        expect(Error.message).to.equal('Condition not met...');
+    }
+
 
     const passCondition1 = {
         expression: 'true'
@@ -137,14 +170,9 @@ describe('Test filter', () => {
         expression: '$number(hello) > 5'
     };
 
-    const passthroughCondition1 = {
+    const passthroughCondition = {
         expression: 'elasticio.step_1.body.one = elasticio.step_2.body.two'
     };
-
-    describe('Should emit message', async () => {
-        it(passthroughCondition1.expression, async () => {await passthroughFilter(passthroughCondition1);});
-    });
-
 
     describe('Should emit message', async () => {
         it(passCondition1.expression, async () => {await filter(passCondition1, true);});
@@ -152,6 +180,7 @@ describe('Test filter', () => {
         it(passCondition3.expression, async () => {await filter(passCondition3, true);});
         it(passCondition4.expression, async () => {await filter(passCondition4, true);});
         it(passCondition5.expression, async () => {await filter(passCondition5, true);});
+        it(passthroughCondition.expression, async () => {await passthroughFilter(passthroughCondition);});
     });
 
     describe('Should log message to console', async () => {
@@ -165,7 +194,7 @@ describe('Test filter', () => {
 
     describe('Should throw error', async () => {
         it(errorCondition1.expression, async () => {await errorCondition(errorCondition1);});
-        it(passthroughCondition1.expression, async () => {await passthroughError(passthroughCondition1);});
+        it(passthroughCondition.expression, async () => {await passthroughError(passthroughCondition);});
+        it(passthroughCondition.expression, async () => {await assertionTest(passthroughCondition);});
     });
-
 });
