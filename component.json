@@ -4,7 +4,7 @@
     "actions": {
         "filter": {
             "deprecated": true,
-            "title": "Filter (Deprecated)",
+            "title": "Filter",
             "description": "This action is deprecated, please use Simple JSONata Filter instead.",
             "main": "./lib/actions/filter.js",
             "fields": {
