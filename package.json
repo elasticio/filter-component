@@ -24,7 +24,6 @@
     },
     "dependencies": {
         "@elastic.io/component-commons-library": "0.0.7",
-        "bluebird": "3.5.4",
         "chai-as-promised": "7.1.1",
         "co": "4.6.0",
         "elasticio-node": "0.0.9",
@@ -38,11 +37,8 @@
         "eslint": "3.19.0",
         "eslint-config-xo-space": "0.15.0",
         "eslint-plugin-json": "1.4.0",
-        "grunt": "1.0.1",
-        "grunt-mocha": "1.0.2",
         "grunt-mocha-test": "0.13.3",
         "mocha": "6.1.4",
-        "nock": "9.6.1",
         "sinon": "1.17.7"
     },
     "eslintConfig": {
