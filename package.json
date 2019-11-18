@@ -18,6 +18,10 @@
         "ipaas",
         "elasticio-component"
     ],
+    "scripts": {
+        "pretest": "eslint lib spec --fix",
+        "test": "mocha spec --recursive"
+    },
     "dependencies": {
         "@elastic.io/component-commons-library": "0.0.7",
         "bluebird": "3.5.4",
@@ -28,10 +32,6 @@
         "moment": "2.17.1",
         "request": "2.75.0",
         "request-promise": "4.2.4"
-    },
-    "scripts": {
-        "pretest": "eslint lib/simpleJSONataFilter.js spec/simpleJSONataFilter.spec.js --fix",
-        "test": "mocha spec --recursive"
     },
     "devDependencies": {
         "chai": "3.5.0",
