@@ -6,7 +6,15 @@ const action = require('../lib/actions/simpleJSONataFilter');
 const sinon = require('sinon');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
+const bunyan = require('bunyan');
 chai.use(chaiAsPromised);
+
+const self = {
+    emit: sinon.spy(),
+    logger: bunyan.createLogger({
+        name: 'dummy'
+    })
+};
 
 describe('Test filter', () => {
     const simpleMsg = {
@@ -15,10 +23,12 @@ describe('Test filter', () => {
         }
     };
 
+    afterEach(() => { self.emit.resetHistory(); });
+
     async function errorCondition(condition) {
         let Error;
         try {
-            await action.process(simpleMsg, condition);
+            await action.process.call(self, simpleMsg, condition);
         } catch (error) {
             Error = error;
         }
@@ -26,11 +36,8 @@ describe('Test filter', () => {
     }
 
     async function filter(condition, passOrFail) {
-        const spy = sinon.spy();
-        await action.process.call({
-            emit: spy
-        }, simpleMsg, condition);
-        expect(spy.calledOnce).to.equal(passOrFail);
+        await action.process.call(self, simpleMsg, condition);
+        expect(self.emit.calledOnce).to.equal(passOrFail);
     }
 
     async function passthroughFilter(condition) {
@@ -55,11 +62,8 @@ describe('Test filter', () => {
                 }
             }
         };
-        const spy = sinon.spy();
-        await action.process.call({
-            emit: spy
-        }, passthroughMsg, condition);
-        expect(spy.calledOnce).to.equal(true);
+        await action.process.call(self, passthroughMsg, condition);
+        expect(self.emit.calledOnce).to.equal(true);
     }
 
     async function passthroughError(condition) {
@@ -87,7 +91,7 @@ describe('Test filter', () => {
         };
         let Error;
         try {
-            await action.process(passthroughErrorMsg, condition);
+            await action.process.call(self, passthroughErrorMsg, condition);
         } catch (error) {
             Error = error;
         }
@@ -121,7 +125,7 @@ describe('Test filter', () => {
         condition.assertion = true;
         let Error;
         try {
-            await action.process(msg, condition);
+            await action.process.call(self, msg, condition);
         } catch (error) {
             Error = error;
         }
