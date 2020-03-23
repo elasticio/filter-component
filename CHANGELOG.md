@@ -1,3 +1,7 @@
+## 1.0.2 (March 23, 2019)
+
+* Add support for new Jsonata expressions getFlowVariables and getPathrough
+
 ## 1.0.1 (December 23, 2019)
 
 * Update sailor to version 2.5.4
