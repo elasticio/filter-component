@@ -1,4 +1,4 @@
-## 1.0.3 (May 15, 2020)
+## 1.0.3 (May 22, 2020)
 
 * Add JSONata expression when error thrown by assertion
 * Pass incoming message when filter condition is true
