@@ -1,26 +1,14 @@
 {
     "name": "filter-component",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "elastic.io filter component to filter incoming data based on arbitrary expression",
     "homepage": "https://www.elastic.io",
-    "author": {
-        "name": "elastic.io GmbH",
-        "email": "info@elastic.io",
-        "url": "https://www.elastic.io"
-    },
-    "files": [
-        "lib"
-    ],
-    "main": "lib/index.js",
-    "keywords": [
-        "elasticio",
-        "filter",
-        "ipaas",
-        "elasticio-component"
-    ],
     "scripts": {
         "pretest": "eslint lib spec --fix",
         "test": "mocha spec --recursive"
+    },
+    "engines": {
+        "node": ">=12.13.0"
     },
     "dependencies": {
         "@elastic.io/component-logger": "0.0.1",
@@ -28,7 +16,7 @@
         "chai-as-promised": "7.1.1",
         "co": "4.6.0",
         "elasticio-node": "0.0.9",
-        "elasticio-sailor-nodejs": "2.5.4",
+        "elasticio-sailor-nodejs": "2.6.7",
         "moment": "2.17.1",
         "request": "2.75.0",
         "request-promise": "4.2.4"
@@ -36,9 +24,10 @@
     "devDependencies": {
         "bunyan": "1.8.12",
         "chai": "3.5.0",
-        "eslint": "3.19.0",
-        "eslint-config-xo-space": "0.15.0",
-        "eslint-plugin-json": "1.4.0",
+        "eslint": "5.16.0",
+        "eslint-config-airbnb-base": "13.1.0",
+        "eslint-plugin-import": "2.18.0",
+        "eslint-plugin-mocha": "4.8.0",
         "grunt-mocha-test": "0.13.3",
         "mocha": "6.1.4",
         "sinon": "7.5.0"
@@ -48,6 +37,17 @@
         "env": {
             "mocha": true
         }
+    },
+    "keywords": [
+        "elasticio",
+        "filter",
+        "ipaas",
+        "elasticio-component"
+    ],
+    "author": {
+        "name": "elastic.io GmbH",
+        "email": "info@elastic.io",
+        "url": "https://www.elastic.io"
     },
     "repository": "elasticio/filter-component",
     "license": "Apache-2.0"
