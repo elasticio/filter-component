@@ -1,3 +1,7 @@
+## 1.0.4 (July 3, 2020)
+
+* Fix for 'elasticio' key in output message
+
 ## 1.0.3 (May 22, 2020)
 
 * Add JSONata expression when error thrown by assertion

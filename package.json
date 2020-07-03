@@ -1,6 +1,6 @@
 {
     "name": "filter-component",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "elastic.io filter component to filter incoming data based on arbitrary expression",
     "homepage": "https://www.elastic.io",
     "scripts": {
