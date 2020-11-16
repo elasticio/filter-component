@@ -189,6 +189,35 @@ describe('Test filter', () => {
     });
   });
 
+  describe('Should move elasticio variable', async () => {
+    it('addMetadataToResponse enabled', async () => {
+      const msg = {
+        body: {
+          data: { some: 'data' },
+          elasticio: { id: 'someID' },
+        },
+      };
+      await action.process.call(self, msg, { expression: '0 != 1', addMetadataToResponse: true });
+      expect(self.emit.getCall(0).args[1].body).to.deep.equal({
+        data: { some: 'data' },
+        elasticioMeta: { id: 'someID' },
+      });
+    });
+
+    it('addMetadataToResponse disabled', async () => {
+      const msg = {
+        body: {
+          data: { some: 'data' },
+          elasticio: { id: 'someID' },
+        },
+      };
+      await action.process.call(self, msg, { expression: '0 != 1' });
+      expect(self.emit.getCall(0).args[1].body).to.deep.equal({
+        data: { some: 'data' },
+      });
+    });
+  });
+
   describe('Should log message to console', async () => {
     it(passCondition1.expression, async () => { await filter(failCondition1, false); });
     it(failCondition2.expression, async () => { await filter(failCondition2, false); });
