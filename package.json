@@ -29,6 +29,7 @@
         "eslint-plugin-mocha": "4.8.0",
         "grunt-mocha-test": "0.13.3",
         "mocha": "8.2.1",
+        "nock": "9.1.6",
         "sinon": "7.5.0"
     },
     "eslintConfig": {
