@@ -40,6 +40,11 @@
                     "label": "Assertion",
                     "Note": "Check this when you want to throw error when condition is not met",
                     "viewClass": "CheckBoxView"
+                },
+                "addMetadataToResponse": {
+                    "label": "Metadata To Response",
+                    "Note": "Adding passthrough from a previous step to message body as `elasticioMeta` variable, if enabled",
+                    "viewClass": "CheckBoxView"
                 }
             }
         }
