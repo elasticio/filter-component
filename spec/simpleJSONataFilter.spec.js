@@ -190,30 +190,47 @@ describe('Test filter', () => {
   });
 
   describe('Should move elasticio variable', async () => {
-    it('addMetadataToResponse enabled', async () => {
-      const msg = {
-        body: {
-          data: { some: 'data' },
-          elasticio: { id: 'someID' },
+    const msg = {
+      stepId: 'step_2',
+      headers: {},
+      passthrough: {
+        step_2: { stepId: 'step_2', headers: {}, body: { result: 'Hello world!' } },
+        step_1: {
+          body: { lastPoll: '4750-04-19T10:05:52.098Z', fireTime: '2701-02-20T02:58:30.890Z' },
         },
-      };
-      await action.process.call(self, msg, { expression: '0 != 1', addMetadataToResponse: true });
+      },
+      body: { result: 'Hello world!' },
+    };
+    const configuration = { expression: '0!=1' };
+
+    it('addMetadataToResponse enabled', async () => {
+      configuration.addMetadataToResponse = true;
+      await action.process.call(self, JSON.parse(JSON.stringify(msg)), configuration);
       expect(self.emit.getCall(0).args[1].body).to.deep.equal({
-        data: { some: 'data' },
-        elasticioMeta: { id: 'someID' },
+        elasticioMeta: {
+          step_1: {
+            body: {
+              fireTime: '2701-02-20T02:58:30.890Z',
+              lastPoll: '4750-04-19T10:05:52.098Z',
+            },
+          },
+          step_2: {
+            body: {
+              result: 'Hello world!',
+            },
+            headers: {},
+            stepId: 'step_2',
+          },
+        },
+        result: 'Hello world!',
       });
     });
 
     it('addMetadataToResponse disabled', async () => {
-      const msg = {
-        body: {
-          data: { some: 'data' },
-          elasticio: { id: 'someID' },
-        },
-      };
-      await action.process.call(self, msg, { expression: '0 != 1' });
+      configuration.addMetadataToResponse = false;
+      await action.process.call(self, JSON.parse(JSON.stringify(msg)), configuration);
       expect(self.emit.getCall(0).args[1].body).to.deep.equal({
-        data: { some: 'data' },
+        result: 'Hello world!',
       });
     });
   });
