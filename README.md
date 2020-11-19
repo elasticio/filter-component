@@ -41,6 +41,8 @@ it is evaluated to `false`, a message will be logged to the console and the msg 
 Checkbox:
 * If checked, the checkbox adds `Assertion` functionality. Instead of doing nothing, the component will throw an error when the condition is not met.
 
+* `Metadata To Response` Adding passthrough from a previous step to message body as `elasticioMeta` variable, if enabled.
+
 ## Additional Notes
 
 *   The JSONata Filter expression can be a valid expression however it can cause an error to be thrown if it is invalid based on the context. For example, 

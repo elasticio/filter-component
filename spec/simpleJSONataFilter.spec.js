@@ -189,6 +189,52 @@ describe('Test filter', () => {
     });
   });
 
+  describe('Should move elasticio variable', async () => {
+    const msg = {
+      stepId: 'step_2',
+      headers: {},
+      passthrough: {
+        step_2: { stepId: 'step_2', headers: {}, body: { result: 'Hello world!' } },
+        step_1: {
+          body: { lastPoll: '4750-04-19T10:05:52.098Z', fireTime: '2701-02-20T02:58:30.890Z' },
+        },
+      },
+      body: { result: 'Hello world!' },
+    };
+    const configuration = { expression: '0!=1' };
+
+    it('addMetadataToResponse enabled', async () => {
+      configuration.addMetadataToResponse = true;
+      await action.process.call(self, JSON.parse(JSON.stringify(msg)), configuration);
+      expect(self.emit.getCall(0).args[1].body).to.deep.equal({
+        elasticioMeta: {
+          step_1: {
+            body: {
+              fireTime: '2701-02-20T02:58:30.890Z',
+              lastPoll: '4750-04-19T10:05:52.098Z',
+            },
+          },
+          step_2: {
+            body: {
+              result: 'Hello world!',
+            },
+            headers: {},
+            stepId: 'step_2',
+          },
+        },
+        result: 'Hello world!',
+      });
+    });
+
+    it('addMetadataToResponse disabled', async () => {
+      configuration.addMetadataToResponse = false;
+      await action.process.call(self, JSON.parse(JSON.stringify(msg)), configuration);
+      expect(self.emit.getCall(0).args[1].body).to.deep.equal({
+        result: 'Hello world!',
+      });
+    });
+  });
+
   describe('Should log message to console', async () => {
     it(passCondition1.expression, async () => { await filter(failCondition1, false); });
     it(failCondition2.expression, async () => { await filter(failCondition2, false); });

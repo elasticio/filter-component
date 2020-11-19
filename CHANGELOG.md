@@ -1,3 +1,10 @@
+## 1.1.0 (November 15, 2020)
+
+* Add `Metadata To Response` configuration parameter
+* Upgrade to sailor 2.6.18
+* Annual audit of the component code to check if it exposes a sensitive data in the logs
+* Annual npm vulnerabilities audit
+
 ## 1.0.4 (July 3, 2020)
 
 * Fix for 'elasticio' key in output message
