@@ -1,3 +1,7 @@
+## 1.1.1 (February 26, 2020)
+
+* Update to sailor 2.6.24
+
 ## 1.1.0 (November 15, 2020)
 
 * Add `Metadata To Response` configuration parameter
@@ -7,7 +11,7 @@
 
 ## 1.0.4 (July 3, 2020)
 
-* Fix for 'elasticio' key in output message
+* Fix for `elasticio` key in output message
 
 ## 1.0.3 (May 22, 2020)
 
@@ -18,11 +22,12 @@
 
 ## 1.0.2 (March 23, 2019)
 
-* Add support for new Jsonata expressions getFlowVariables and getPathrough
+* Add support for new Jsonata expressions `getFlowVariables` and `getPathrough`
 
 ## 1.0.1 (December 23, 2019)
 
 * Update sailor to version 2.5.4
+
 ## 1.0.0 (November 11, 2019)
 
 * Use `@elastic.io/component-commons-library` instead of `@elastic.io/jsonata-moment` for JSONata transform
