@@ -13,7 +13,7 @@ jobs: # a collection of steps
                   key: dependency-cache-{{ checksum "package.json" }}
             - run:
                   name: Audit Dependencies
-                  command: npm audit --audit-level=high
+                  command: npm audit --audit-level=critical
             - run:
                   name: install-npm-wee
                   command: npm install

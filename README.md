@@ -25,8 +25,7 @@ By default no environment variable is necessary to operate the component.
 
 ## Triggers
 
-This component has no trigger functions. This means it will not be selectable as 
-the first component in an integration flow.
+This component has no trigger functions, so it is not selectable as a trigger (first step in an integration flow).
 
 ## Actions
 
