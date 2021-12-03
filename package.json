@@ -1,6 +1,5 @@
 {
     "name": "filter-component",
-    "version": "1.1.1",
     "description": "elastic.io filter component to filter incoming data based on arbitrary expression",
     "homepage": "https://www.elastic.io",
     "scripts": {
@@ -14,7 +13,7 @@
         "@elastic.io/component-commons-library": "1.1.5",
         "@elastic.io/component-logger": "0.0.1",
         "elasticio-node": "0.0.9",
-        "elasticio-sailor-nodejs": "2.6.24",
+        "elasticio-sailor-nodejs": "2.6.26",
         "moment": "2.29.1",
         "request": "2.88.2",
         "request-promise": "4.2.4"
