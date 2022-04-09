@@ -14,7 +14,7 @@
         "@elastic.io/component-logger": "0.0.1",
         "elasticio-node": "0.0.9",
         "elasticio-sailor-nodejs": "2.6.26",
-        "moment": "2.29.1",
+        "moment": "2.29.2",
         "request": "2.88.2",
         "request-promise": "4.2.4"
     },
