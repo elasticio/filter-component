@@ -10,11 +10,11 @@
         "node": "14"
     },
     "dependencies": {
-        "@elastic.io/component-commons-library": "2.0.1-dev.15",
+        "@elastic.io/component-commons-library": "2.0.2",
         "@elastic.io/component-logger": "0.0.1",
         "elasticio-node": "0.0.9",
         "elasticio-sailor-nodejs": "2.6.27",
-        "moment": "2.29.1",
+        "moment": "2.29.3",
         "request": "2.88.2",
         "request-promise": "4.2.4"
     },
