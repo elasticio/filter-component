@@ -132,7 +132,6 @@ describe('Test filter', () => {
     expect(Error.message).to.equal(`Condition not met on JSONata expression: ${condition.expression}`);
   }
 
-
   const passCondition1 = {
     expression: 'true',
   };
@@ -148,7 +147,6 @@ describe('Test filter', () => {
   const passCondition5 = {
     expression: '20.4 > 20',
   };
-
 
   const failCondition1 = {
     expression: 'false',
@@ -168,7 +166,6 @@ describe('Test filter', () => {
   const failCondition6 = {
     expression: 'undefined',
   };
-
 
   const errorCondition1 = {
     expression: '$number(hello) > 5',
