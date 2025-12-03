@@ -7,19 +7,17 @@
         "test": "mocha spec --recursive"
     },
     "engines": {
-        "node": "16"
-    },
+        "node": "24.x"
+      },
     "dependencies": {
-        "@elastic.io/component-commons-library": "2.0.2",
+        "@elastic.io/component-commons-library": "4.0.0",
         "@elastic.io/component-logger": "0.0.1",
-        "elasticio-node": "0.0.9",
-        "elasticio-sailor-nodejs": "2.7.1",
+        "elasticio-sailor-nodejs": "2.7.7",
         "moment": "2.29.4",
         "request": "2.88.2",
         "request-promise": "4.2.4"
     },
     "devDependencies": {
-        "bunyan": "1.8.12",
         "chai": "3.5.0",
         "chai-as-promised": "7.1.1",
         "eslint": "8.26.0",

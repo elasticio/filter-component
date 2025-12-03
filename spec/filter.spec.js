@@ -3,17 +3,14 @@ const sinon = require('sinon');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const nock = require('nock');
-const bunyan = require('bunyan');
-
+const getLogger = require('@elastic.io/component-logger');
 const action = require('../lib/actions/filter');
 
 chai.use(chaiAsPromised);
 
 const self = {
   emit: sinon.spy(),
-  logger: bunyan.createLogger({
-    name: 'dummy',
-  }),
+  logger: getLogger(),
 };
 
 describe('Test old filter', () => {
