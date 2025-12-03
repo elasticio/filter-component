@@ -1,0 +1,6 @@
+{
+  "GHSA-fjxv-7rqg-78g4": {
+    "active": true,
+    "notes": "This vulnerability is in form-data used transitively via deprecated 'request' library. We do not use form-data directly. Waiting on upstream libraries to upgrade."
+  }
+}

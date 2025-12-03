@@ -3,6 +3,7 @@
     "description": "elastic.io filter component to filter incoming data based on arbitrary expression",
     "homepage": "https://www.elastic.io",
     "scripts": {
+        "audit": "better-npm-audit audit --level high --production",
         "pretest": "eslint lib spec --fix",
         "test": "mocha spec --recursive"
     },
@@ -21,6 +22,7 @@
         "chai": "3.5.0",
         "chai-as-promised": "7.1.1",
         "eslint": "8.26.0",
+        "better-npm-audit": "3.7.3",
         "eslint-config-airbnb-base": "15.0.0",
         "eslint-plugin-import": "2.26.0",
         "eslint-plugin-mocha": "10.1.0",
