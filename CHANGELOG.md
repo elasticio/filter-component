@@ -5,6 +5,7 @@
 * Remove redundant `elasticio-node` dependency
 * Remove redundant `bunyan` dependency
 * Update the Node engine to version 24.x.
+* Replace deprecated `request` and `request-promise` with `axios`
 
 ## 1.1.4 (November 18, 2022)
 
