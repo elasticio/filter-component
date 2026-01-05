@@ -118,6 +118,8 @@ workflows:
     jobs:
       - build:
           name: "Build and publish docker image"
+          context:
+            - componentspusher 
           filters:
             branches:
               ignore: /.*/
