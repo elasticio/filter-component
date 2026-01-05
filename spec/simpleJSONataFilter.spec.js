@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
-const bunyan = require('bunyan');
+const getLogger = require('@elastic.io/component-logger');
 
 const action = require('../lib/actions/simpleJSONataFilter');
 
@@ -10,9 +10,7 @@ chai.use(chaiAsPromised);
 
 const self = {
   emit: sinon.spy(),
-  logger: bunyan.createLogger({
-    name: 'dummy',
-  }),
+  logger: getLogger(),
 };
 
 describe('Test filter', () => {

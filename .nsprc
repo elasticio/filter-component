@@ -1,0 +1,10 @@
+{
+  "GHSA-fjxv-7rqg-78g4": {
+    "active": true,
+    "notes": "This vulnerability is in form-data used transitively via deprecated 'request' library. We do not use form-data directly. Waiting on upstream libraries to upgrade."
+  },
+      "GHSA-869p-cjfg-cm3x": {
+        "active": true,
+        "notes": "jws is a transitive dependency via jsonwebtoken, and we don't use verify function from jsonwebtoken, so not affected"
+    }
+}

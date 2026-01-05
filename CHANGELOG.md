@@ -1,3 +1,12 @@
+## 1.1.5 (January 05, 2026)
+
+* Update Sailor version to 2.7.7
+* Update component-commons-library version to 4.0.0
+* Remove redundant `elasticio-node` dependency
+* Remove redundant `bunyan` dependency
+* Update the Node engine to version 24.x.
+* Replace deprecated `request` and `request-promise` with `axios`
+
 ## 1.1.4 (November 18, 2022)
 
 * Update Sailor version to 2.7.1
